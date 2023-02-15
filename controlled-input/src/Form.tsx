@@ -14,17 +14,20 @@ import { useState } from 'react';
 
 import './App.css';
 
-function Form() {
+const Form = () => {
   const [message, setMessage] = useState('');
   const [showMessage, setShowMessage] = useState(false);
+  const [italicsFont, setItalicsFont] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     console.log('form submitted! ', message);
     setShowMessage(true);
+    setItalicsFont(!italicsFont);
+    setMessage('');
   };
-  const handleChange = (e) => {
-    setMessage(e.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMessage(event.target.value);
   };
 
   return (
@@ -41,9 +44,15 @@ function Form() {
         </label>
         <button>Submit</button>
       </form>
-      {showMessage ? <p>{message}</p> : null}
+      {showMessage && italicsFont ? (
+        <p>
+          <i>{message}</i>
+        </p>
+      ) : (
+        <p>{message}</p>
+      )}
     </>
   );
-}
+};
 
 export default Form;
