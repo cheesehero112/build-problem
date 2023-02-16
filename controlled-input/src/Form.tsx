@@ -16,15 +16,17 @@ import './App.css';
 
 const Form = () => {
   const [message, setMessage] = useState('');
-  const [showMessage, setShowMessage] = useState(false);
+  const [displayMessage, setDisplayMessage] = useState('');
   const [italicsFont, setItalicsFont] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('form submitted! ', message);
-    setShowMessage(true);
-    setItalicsFont(!italicsFont);
     setMessage('');
+    setDisplayMessage(`form submitted!: ${message}`);
+  };
+
+  const handleItalics = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setItalicsFont(!italicsFont);
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
@@ -42,14 +44,23 @@ const Form = () => {
             name='message'
           ></input>
         </label>
+        <br />
+        <label>
+          <input
+            type='checkbox'
+            checked={italicsFont}
+            onChange={handleItalics}
+          ></input>
+          I like Italics!
+        </label>
         <button>Submit</button>
       </form>
-      {showMessage && italicsFont ? (
+      {italicsFont ? (
         <p>
-          <i>{message}</i>
+          <i>{displayMessage}</i>
         </p>
       ) : (
-        <p>{message}</p>
+        <p>{displayMessage}</p>
       )}
     </>
   );
