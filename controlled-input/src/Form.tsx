@@ -38,6 +38,7 @@ const Form = () => {
         <label>
           Write a message:
           <input
+            style={italicsFont ? { fontStyle: 'italic' } : { fontStyle: 'normal' }}
             value={message}
             onChange={handleChange}
             type='text'
