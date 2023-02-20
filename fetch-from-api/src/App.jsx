@@ -16,14 +16,19 @@ import './App.css';
 function App() {
   const api = 'https://jsonplaceholder.typicode.com/users';
   const [data, setData] = useState([]);
-  useEffect(() => {
+
+  const fetchData = async () => {
     try {
-      fetch(api)
-        .then((response) => response.json())
-        .then((data) => setData(data));
+      const response = await fetch(api);
+      const data = await response.json();
+      setData(data);
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (
