@@ -11,8 +11,10 @@ When the user clicks submit, the value of the input field should be logged
 */
 
 import { useState } from 'react';
+import { P, Label, InputItalics, InputNormal, Container, FormContainer, SubmitButton } from './styles/styles';
+// import styled from 'styled-components';
 
-import './App.css';
+// import './App.css';
 
 const Form = () => {
   const [message, setMessage] = useState('');
@@ -22,6 +24,7 @@ const Form = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setMessage('');
+    console.log('button clicked');
     setDisplayMessage(`form submitted!: ${message}`);
   };
 
@@ -34,28 +37,37 @@ const Form = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Write a message:
-          <input
-            style={italicsFont ? { fontStyle: 'italic' } : { fontStyle: 'normal' }}
-            value={message}
-            onChange={handleChange}
-            type='text'
-            name='message'
-          ></input>
-        </label>
+      {/* <Container> */}
+      <FormContainer onSubmit={handleSubmit}>
+        <Label>
+          <P>Write a message:</P>
+          {italicsFont ? (
+            <InputItalics
+              value={message}
+              onChange={handleChange}
+              type='text'
+              name='message'
+            />
+          ) : (
+            <InputNormal
+              value={message}
+              onChange={handleChange}
+              type='text'
+              name='message'
+            />
+          )}
+        </Label>
         <br />
-        <label>
+        <Label>
           <input
             type='checkbox'
             checked={italicsFont}
             onChange={handleItalics}
           ></input>
-          I like Italics!
-        </label>
-        <button>Submit</button>
-      </form>
+          <P>I like Italics!</P>
+        </Label>
+        <SubmitButton>Submit</SubmitButton>
+      </FormContainer>
       {italicsFont ? (
         <p>
           <i>{displayMessage}</i>
@@ -63,6 +75,7 @@ const Form = () => {
       ) : (
         <p>{displayMessage}</p>
       )}
+      {/* </Container> */}
     </>
   );
 };
