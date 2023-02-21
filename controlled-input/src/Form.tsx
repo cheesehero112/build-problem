@@ -11,10 +11,7 @@ When the user clicks submit, the value of the input field should be logged
 */
 
 import { useState } from 'react';
-import { P, Label, InputItalics, InputNormal, Container, FormContainer, SubmitButton } from './styles/styles';
-// import styled from 'styled-components';
-
-// import './App.css';
+import { P, Label, InputItalics, InputNormal, Container, FormContainer, SubmitButton, MsgContainer } from './styles/styles';
 
 const Form = () => {
   const [message, setMessage] = useState('');
@@ -37,45 +34,47 @@ const Form = () => {
 
   return (
     <>
-      {/* <Container> */}
-      <FormContainer onSubmit={handleSubmit}>
-        <Label>
-          <P>Write a message:</P>
-          {italicsFont ? (
-            <InputItalics
-              value={message}
-              onChange={handleChange}
-              type='text'
-              name='message'
-            />
-          ) : (
-            <InputNormal
-              value={message}
-              onChange={handleChange}
-              type='text'
-              name='message'
-            />
-          )}
-        </Label>
-        <br />
-        <Label>
-          <input
-            type='checkbox'
-            checked={italicsFont}
-            onChange={handleItalics}
-          ></input>
-          <P>I like Italics!</P>
-        </Label>
-        <SubmitButton>Submit</SubmitButton>
-      </FormContainer>
-      {italicsFont ? (
-        <p>
-          <i>{displayMessage}</i>
-        </p>
-      ) : (
-        <p>{displayMessage}</p>
-      )}
-      {/* </Container> */}
+      <Container>
+        <FormContainer onSubmit={handleSubmit}>
+          <Label>
+            <P>Write a message:</P>
+            {italicsFont ? (
+              <InputItalics
+                value={message}
+                onChange={handleChange}
+                type='text'
+                name='message'
+              />
+            ) : (
+              <InputNormal
+                value={message}
+                onChange={handleChange}
+                type='text'
+                name='message'
+              />
+            )}
+          </Label>
+
+          <Label>
+            <input
+              type='checkbox'
+              checked={italicsFont}
+              onChange={handleItalics}
+            ></input>
+            <P>I like Italics!</P>
+          </Label>
+          <SubmitButton>Submit</SubmitButton>
+        </FormContainer>
+      </Container>
+      <MsgContainer>
+        {italicsFont ? (
+          <P>
+            <i>{displayMessage}</i>
+          </P>
+        ) : (
+          <P>{displayMessage}</P>
+        )}
+      </MsgContainer>
     </>
   );
 };

@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 #root{
-  margin: 10%;
+  margin: auto;
   justify-content: space-around;
 }
 
@@ -20,20 +20,22 @@ body {
   color: black;
 
 }
-
-
 `;
 
 export const InputItalics = styled.input`
-  font-style: italic;
   color: red;
-  margin-top: 10px;
+  border-radius: 7px;
+  font-style: italic;
+  font-size: 16px;
+  padding: 5px;
 `;
 
 export const InputNormal = styled.input`
-  font-style: normal;
   color: green;
-  margin-top: 10px;
+  border-radius: 7px;
+  font-style: normal;
+  font-size: 16px;
+  padding: 5px;
 `;
 
 export const Container = styled.div`
@@ -42,13 +44,20 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   border: 0.2px outset #24383b;
+  border-radius: 7px;
   margin: auto;
+`;
+export const MsgContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 10px;
 `;
 export const Label = styled.label`
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: auto;
+  margin: 10px auto;
   padding: auto 10px;
 `;
 export const P = styled.p`
@@ -60,7 +69,8 @@ export const FormContainer = styled.form`
   width: 100%;
   flex-direction: column;
   justify-content: center;
-  margin: 10px auto;
+  align-items: center;
+  margin: 20px auto;
 `;
 export const SubmitButton = styled.button`
   width: 100px;
