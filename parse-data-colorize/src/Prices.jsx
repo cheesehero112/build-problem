@@ -1,6 +1,7 @@
 import React from 'react';
 import './prices.css';
-
+// If object, order is not guaranteed - make sure to ask about the order
+// if it's a good API design, if order matters, it should come in an array.
 const data = {
   1: -1234,
   2: 23478,

@@ -11,33 +11,54 @@ btn 1   btn2	btn3
 ----------------------------- (edited) 
 */
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Box } from './Box';
 import './app.css';
 
 export function App() {
   const [counter, setCounter] = useState(0);
-  const handleClick = () => {
-    setCounter(counter + 1);
-  };
+  // memoized function
+  const handleClick = useCallback(() => {
+    setCounter((c) => c + 1);
+  }, [counter]);
 
   return (
     <div className='container'>
       Counter: {counter}
-      <div className='box-container'>
-        <div className='box'>
-          <p>Button 1</p>
-          <button onClick={handleClick}>+</button>
-        </div>
-        <div className='box'>
-          <p>Button 2</p>
-          <button onClick={handleClick}>+</button>
-        </div>
-        <div className='box'>
-          <p>Button 3</p>
-          <button onClick={handleClick}>+</button>
-        </div>
-      </div>
+      <Box incrementCounter={handleClick} />
     </div>
   );
 }
+
+// <div className='box'>
+//       <p>Button 1</p>
+//       <Box onClick={handleClick} />
+//     </div>
+//     <div className='box'>
+//       <p>Button 2</p>
+//       <Box onClick={handleClick} />
+//     </div>
+//     <div className='box'>
+//       <p>Button 3</p>
+//       <Box onClick={handleClick} />
+//     </div>
+
+// Here is a way to create an array of Box components using a while loop
+
+// const boxArr = [];
+// let index = 1;
+// while (index <= 3) {
+//   boxArr.push(
+//     <div
+//       className='box'
+//       key={index}
+//     >
+//       <p>{`Button ${index}`}</p>
+//       <Box onClick={handleClick} />
+//     </div>
+//   );
+//   index++;
+// }
+// return (<div>{boxArr}</div>)
+
+// then render {boxArr} in the return
