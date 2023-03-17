@@ -1,4 +1,7 @@
-/* Setup code. You can ignore this and just read the problem statement below, but feel free to check it out too. */
+/* 
+example interview problem that Cutlet showed me
+
+Setup code. You can ignore this and just read the problem statement below, but feel free to check it out too. */
 
 const SUCCESS_PERCENTAGE = 0.5;
 
